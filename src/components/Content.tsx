@@ -1,37 +1,22 @@
+import { useContextMovies } from "../hooks/useContextMovies";
 import { MovieCard } from "../components/MovieCard";
 
 import "../styles/content.scss";
 
-interface Movies {
-  imdbID: string;
-  Title: string;
-  Poster: string;
-  Runtime: string;
-  Ratings: Array<{
-    Source: string;
-    Value: string;
-  }>;
-}
+export function Content() {
+  const { movies, selectedGenre } = useContextMovies();
 
-interface ContentProps {
-  selectedGenre: {
-    title: string;
-  };
-  movies: Movies[];
-}
-
-export function Content(props: ContentProps) {
   return (
     <div className="container">
       <header>
         <span className="category">
-          Categoria:<span> {props.selectedGenre.title}</span>
+          Categoria:<span> {selectedGenre.title}</span>
         </span>
       </header>
 
       <main>
         <div className="movies-list">
-          {props.movies.map((movie) => (
+          {movies.map((movie) => (
             <MovieCard
               key={movie.imdbID}
               title={movie.Title}

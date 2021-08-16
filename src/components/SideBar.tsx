@@ -1,30 +1,10 @@
-import { useEffect, useState } from "react";
-
+import { useContextMovies } from "../hooks/useContextMovies";
 import { Button } from "../components/Button";
-
-import { api } from "../services/api";
 
 import "../styles/sidebar.scss";
 
-interface SideBarProps {
-  selectedGenreId: number;
-  handleClickButton(genreId: number): void;
-}
-
-interface GenreResponseProps {
-  id: number;
-  name: "action" | "comedy" | "documentary" | "drama" | "horror" | "family";
-  title: string;
-}
-
-export function SideBar(props: SideBarProps) {
-  const [genres, setGenres] = useState<GenreResponseProps[]>([]);
-
-  useEffect(() => {
-    api.get<GenreResponseProps[]>("genres").then((response) => {
-      setGenres(response.data);
-    });
-  }, []);
+export function SideBar() {
+  const { genres, handleClickButton, selectedGenreId } = useContextMovies();
 
   return (
     <nav className="sidebar">
@@ -38,8 +18,8 @@ export function SideBar(props: SideBarProps) {
             key={String(genre.id)}
             title={genre.title}
             iconName={genre.name}
-            onClick={() => props.handleClickButton(genre.id)}
-            selected={props.selectedGenreId === genre.id}
+            onClick={() => handleClickButton(genre.id)}
+            selected={selectedGenreId === genre.id}
           />
         ))}
       </div>
