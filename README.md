@@ -43,6 +43,7 @@ $ yarn dev
 > Aprender usar `Componentes`:
 >
 > - Criar pelo menos os componentes SideBar e Content.
+> - Extra: Adicionado Contexto para melhor fixação de conteúdo.
 
 ## :heavy_check_mark: Tecnologias <a name="technologies"></a>
 
