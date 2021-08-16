@@ -32,7 +32,7 @@ interface MainContextData {
   handleClickButton: (id: number) => void;
 }
 
-const MainContext = createContext<MainContextData>({} as MainContextData); //tipar
+const MainContext = createContext<MainContextData>({} as MainContextData);
 
 export function MainProvider({ children }: MainProviderProps) {
   const [selectedGenreId, setSelectedGenreId] = useState(1);
